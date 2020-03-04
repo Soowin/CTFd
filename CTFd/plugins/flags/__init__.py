@@ -57,7 +57,30 @@ class CTFdRegexFlag(BaseFlag):
         return res and res.group() == provided
 
 
-FLAG_CLASSES = {"static": CTFdStaticFlag, "regex": CTFdRegexFlag}
+class CTFdChoiceFlag(BaseFlag):
+    name = "choice"
+    templates = {  # Nunjucks templates used for key editing & viewing
+        "create": "/plugins/flags/assets/choice/create.html",
+        "update": "/plugins/flags/assets/choice/edit.html",
+    }
+
+    @staticmethod
+    def compare(chal_key_obj, provided):
+        saved = chal_key_obj.content
+        if len(saved) != len(provided):
+            return False
+        result = 0
+
+        if 1:
+            for x, y in zip(saved.lower(), provided.lower()):
+                result |= ord(x) ^ ord(y)
+        else:
+            for x, y in zip(saved, provided):
+                result |= ord(x) ^ ord(y)
+        return result == 0
+
+
+FLAG_CLASSES = {"static": CTFdStaticFlag, "regex": CTFdRegexFlag,  "choice":CTFdChoiceFlag}
 
 
 def get_flag_class(class_id):

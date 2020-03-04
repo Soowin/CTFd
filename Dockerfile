@@ -1,4 +1,5 @@
 FROM python:3.7-alpine
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk update && \
     apk add python python-dev linux-headers libffi-dev gcc make musl-dev py-pip mysql-client git openssl-dev
 RUN adduser -D -u 1001 -s /bin/bash ctfd
@@ -8,6 +9,7 @@ RUN mkdir -p /opt/CTFd /var/log/CTFd /var/uploads
 
 COPY requirements.txt .
 
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install -r requirements.txt
 
 COPY . /opt/CTFd

@@ -5,8 +5,9 @@ services:
     build: .
     user: root
     restart: always
+    # 80 is an open port to real users.
     ports:
-      - "8000:8000"
+      - "80:8000"
     environment:
       - UPLOAD_FOLDER=/var/uploads
       - DATABASE_URL=mysql+pymysql://root:ctfd@db/ctfd
