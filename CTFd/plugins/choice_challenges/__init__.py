@@ -105,33 +105,9 @@ class ChoiceValueChallenge(BaseChallenge):
             # We need to set these to floats so that the next operations don't operate on strings
             # if attr in ("content1", "content2", "content3", "content4"):
             #     value = (value)
-            setattr(content1, content2, content3, content4)
-
-        Model = get_model()
-
-        # solve_count = (
-        #     Solves.query.join(Model, Solves.account_id == Model.id)
-        #     .filter(
-        #         Solves.challenge_id == challenge.id,
-        #         Model.hidden == False,
-        #         Model.banned == False,
-        #     )
-        #     .count()
-        # )
-
-        # It is important that this calculation takes into account floats.
-        # Hence this file uses from __future__ import division
-        # value = (
-        #     ((challenge.minimum - challenge.initial) / (challenge.decay ** 2))
-        #     * (solve_count ** 2)
-        # ) + challenge.initial
-
-        # value = math.ceil(value)
-
-        # if value < challenge.minimum:
-        #     value = challenge.minimum
-
-        # challenge.value = value
+            # setattr(content1, content2, content3, content4)
+            setattr(challenge, attr, value)
+        # Model = get_model()
 
         db.session.commit()
         return challenge
