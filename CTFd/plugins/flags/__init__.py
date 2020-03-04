@@ -70,13 +70,10 @@ class CTFdChoiceFlag(BaseFlag):
         if len(saved) != len(provided):
             return False
         result = 0
-
-        if 1:
-            for x, y in zip(saved.lower(), provided.lower()):
-                result |= ord(x) ^ ord(y)
-        else:
-            for x, y in zip(saved, provided):
-                result |= ord(x) ^ ord(y)
+        
+        for x, y in zip(saved.lower(), provided.lower()):
+            result |= ord(x) ^ ord(y)
+        
         return result == 0
 
 
