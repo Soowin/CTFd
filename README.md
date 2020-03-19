@@ -7,9 +7,11 @@ CTFd is a Capture The Flag framework focusing on ease of use and customizability
 ## 线上答题平台
 
 使用CTFd搭建 最新更新时间：2020.3.19
+
 **功能 Features**：
  1.Python3
  2.选择题和填空题
+
 **未完成的功能**：
  1.注册学号审查
  2.随机题库
