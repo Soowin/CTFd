@@ -2,6 +2,8 @@ FROM python:3.7-alpine
 WORKDIR /opt/CTFd
 RUN mkdir -p /opt/CTFd /var/log/CTFd /var/uploads
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN apk update && \
     apk add \
         python \
